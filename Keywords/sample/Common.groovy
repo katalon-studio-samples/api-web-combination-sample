@@ -30,6 +30,9 @@ import org.openqa.selenium.By
 import com.kms.katalon.core.mobile.keyword.internal.MobileDriverFactory
 import com.kms.katalon.core.webui.driver.DriverFactory
 
+import org.openqa.selenium.WebDriver
+import com.kms.katalon.core.webui.driver.DriverFactory
+
 public class Common {
 	public static JsonSlurper jsonSlurper = new JsonSlurper()
 
@@ -38,8 +41,6 @@ public class Common {
 	 */
 	@Keyword
 	public static void setToken() {
-		import org.openqa.selenium.WebDriver
-		import com.kms.katalon.core.webui.driver.DriverFactory
 		'get cookies'
 		ResponseObject response = WS.sendRequest(findTestObject('Post an authorization'))
 		String fullToken = response.getHeaderField("Set-Cookie").split(";")[0]
@@ -72,7 +73,7 @@ public class Common {
 	@Keyword
 	def createNewTicket(String project, String issueType, String summary, int expectedStatus = 201) {
 		def response = WS.sendRequestAndVerify(findTestObject("Object Repository/Post a new ticket",
-				["project": project, "issueType": issueType, "summary": summary, "expectedStatus": expectedStatus]))
+		["project": project, "issueType": issueType, "summary": summary, "expectedStatus": expectedStatus]))
 		def jsonResponse = jsonSlurper.parseText(response.getResponseText())
 		return jsonResponse.key
 	}
