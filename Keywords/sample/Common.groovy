@@ -73,7 +73,7 @@ public class Common {
 	@Keyword
 	def createNewTicket(String project, String issueType, String summary, int expectedStatus = 201) {
 		def response = WS.sendRequestAndVerify(findTestObject("Object Repository/Post a new ticket",
-		["project": project, "issueType": issueType, "summary": summary, "expectedStatus": expectedStatus]))
+				["project": project, "issueType": issueType, "summary": summary, "expectedStatus": expectedStatus]))
 		def jsonResponse = jsonSlurper.parseText(response.getResponseText())
 		return jsonResponse.key
 	}
@@ -90,6 +90,7 @@ public class Common {
 		WebUI.setText(findTestObject('WebUI/Ticket Details/txtSearch'), ticketKey)
 		WebUI.click(findTestObject('WebUI/Ticket Details/lblTicketKeySearchResult', ['ticketKey': ticketKey]))
 		WebUI.click(findTestObject('WebUI/Ticket Details/icoEdit'))
+		WebUI.waitForElementPresent(findTestObject('WebUI/Ticket Details/txtSummary'), GlobalVariable.presentTimeout)
 		WebUI.setText(findTestObject('WebUI/Ticket Details/txtSummary'), newSummaryValue)
 		WebUI.click(findTestObject('WebUI/Ticket Details/icoSave'))
 		WebUI.waitForElementPresent(findTestObject('Object Repository/WebUI/Ticket Details/dynamicSummary',['summary': newSummaryValue]), GlobalVariable.presentTimeout)
