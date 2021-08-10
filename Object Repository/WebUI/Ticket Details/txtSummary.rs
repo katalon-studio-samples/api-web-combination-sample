@@ -11,7 +11,7 @@
       </entry>
       <entry>
          <key>XPATH</key>
-         <value>//input[@id='summary']</value>
+         <value>//form//input[@id='summary']</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
