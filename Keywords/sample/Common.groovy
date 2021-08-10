@@ -90,7 +90,7 @@ public class Common {
 		WebUI.setText(findTestObject('WebUI/Ticket Details/txtSearch'), ticketKey)
 		WebUI.click(findTestObject('WebUI/Ticket Details/lblTicketKeySearchResult', ['ticketKey': ticketKey]))
 		WebUI.click(findTestObject('WebUI/Ticket Details/icoEdit'))
-		WebUI.waitForElementPresent(findTestObject('WebUI/Ticket Details/txtSummary'), GlobalVariable.presentTimeout)
+		WebUI.waitForElementNotPresent(findTestObject('WebUI/Ticket Details/icoEdit'), GlobalVariable.presentTimeout)
 		WebUI.setText(findTestObject('WebUI/Ticket Details/txtSummary'), newSummaryValue)
 		WebUI.click(findTestObject('WebUI/Ticket Details/icoSave'))
 		WebUI.waitForElementPresent(findTestObject('Object Repository/WebUI/Ticket Details/dynamicSummary',['summary': newSummaryValue]), GlobalVariable.presentTimeout)
